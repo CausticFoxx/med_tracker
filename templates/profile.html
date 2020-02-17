@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}User Profile{% endblock %}
+
+{% block content %}
+<div class="row mb-5">
+    <h1>Medication Events</h1>
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Medication Name</th>
+                <th scope="col">Dosage</th>
+                <th scope="col">Time Administered</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in medication_events %}
+            <tr>
+                <td>{{event.medication_name}}</td>
+                <td>{{event.dose}} {{event.dose_units}}</td>
+                <td>{{event.administered_at}}</td>
+                <td class="text-right">
+                    <a class="btn btn-outline-danger btn-sm" href="/medication_events/{{event.id}}/delete" role="button">Delete</a>
+                    <a class="btn btn-primary btn-sm" href="/medication_events/{{event.id}}/edit" role="button">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/medication_events/create" role="button">Administer Medication</a>
+</div>
+<div class="row">
+    <h1>Current Medications</h1>
+    <table class="table table-striped table-sm">
+        <thead>
+            <tr>
+                <th scope="col">Medication Name</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for medication in medications %}
+            <tr>
+                <td>{{medication.name}}</td>
+                <td class="text-right">
+                    <a class="btn btn-outline-danger btn-sm" href="/medications/{{medication.id}}/delete" role="button">Delete</a>
+                    <a class="btn btn-primary btn-sm" href="/medications/{{medication.id}}/edit" role="button">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a class="btn btn-primary" href="/medications/create" role="button">Add Medication</a>
+</div>
+{% endblock %}

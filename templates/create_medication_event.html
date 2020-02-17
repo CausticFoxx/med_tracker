@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Medication Event{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col">
+        <fieldset class="border p-2 container">
+            <legend class="w-auto">Add Medication Event</legend>
+            <form action="/medication_events/create" method="POST">
+                <div class="form-group row">
+                    <label for="medication_name" class="col-sm-2 col-form-label">Medication Name:</label>
+                    <div class="col-sm-10">
+                        <select name="medication_id" class="form-control">
+                            {% for medication in medications %}
+                            <option value="{{medication.id}}">{{medication.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="dose" class="col-sm-2 col-form-label">Dosage:</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control" name="dose" placeholder="">
+                    </div>
+                    <div class="col-sm-2">
+                        <select name="dose_units" class="form-control">
+                            <option value="Grams (g)">Grams (g)</option>
+                            <option value="Milligrams (mg)">Milligrams (mg)</option>
+                            <option value="Micrograms (mcg)">Micrograms (mcg)</option>
+                            <option value="Milliliters (ml)">Milliliters (ml)</option>
+                            <option value="Teaspoons (tsp)">Teaspoons (tsp)</option>
+                            <option value="Tablespoons (Tbsp)">Tablespoons (Tbsp)</option>
+                            <option value="International Units (IU)">International Units (IU)</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <p for="administered_at" class="col-sm-2 col-form-label">Time Administered:</p>
+                    <div class="col-sm-10">
+                        <input class="form-control" type="datetime-local" id="administered_at"
+                            name="administered_at">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col text-right">
+                        <input type="submit" class="btn btn-primary mb-2 col-sm-2 offset-sm-10"
+                            value="Save">
+                    </div>
+                </div>
+            </form>
+        </fieldset>
+    </div>
+</div>
+{% endblock %}
