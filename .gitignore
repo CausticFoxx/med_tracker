@@ -1,2 +1,3 @@
 my_environment/py3Env/lib/*
 .*
+__pycache__/
